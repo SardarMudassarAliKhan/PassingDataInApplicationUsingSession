@@ -1,0 +1,13 @@
+﻿@page
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+@{
+    HttpContext.Session.SetString("Username", "JohnDoe");
+}
+
+<p>Username set in session: @HttpContext.Session.GetString("Username")</p>

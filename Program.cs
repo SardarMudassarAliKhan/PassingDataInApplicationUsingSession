@@ -2,6 +2,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddSession(); // Add session services here
 
 var app = builder.Build();
 
@@ -15,11 +16,16 @@ if(!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseSession(); // Enable session before MVC
 app.UseRouting();
 
 app.UseAuthorization();
-
-app.MapRazorPages();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapRazorPages();
+    endpoints.MapControllerRoute(
+        name: "Session",
+        pattern: "{controller=Session}/{action=Index}/{id?}");
+});
 
 app.Run();

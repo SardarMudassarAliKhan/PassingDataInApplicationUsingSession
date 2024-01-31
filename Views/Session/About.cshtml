@@ -1,0 +1,14 @@
+﻿@page
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "About";
+}
+
+<h2>About</h2>
+
+@{
+    string username = HttpContext.Session.GetString("Username");
+    ViewData["Username"] = username;
+}
+
+<p>Username retrieved from session: @ViewData["Username"]</p>
